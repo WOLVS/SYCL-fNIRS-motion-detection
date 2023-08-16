@@ -1,0 +1,12 @@
+--reset
+
+--dt=f32
+--stag=ab,ba --wtag=ba --dtag=AB16b16a
+11x13:13x16:11x16_n"zeropad_blocked_dtag"
+
+--stag=ba --wtag=ab --dtag=ab
+13x262144:262144x1:13x1_n"long_acc_chain"
+
+--stag=axb --dtag=axb
+--skip-imp=brg,jit:avx,ref # test gemm convolutions
+--attr-post-ops=add:f32:per_oc,prelu:per_oc g4ic16id5oc16od5kd3pd1n"3d_conv:grouped_gemm_conv"
